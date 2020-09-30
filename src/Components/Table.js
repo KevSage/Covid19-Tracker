@@ -1,5 +1,5 @@
 import React from "react";
-
+import "../Table.css";
 function Table(props) {
   const sortData = () => {
     let sortedData = [...props.countries];
@@ -13,13 +13,20 @@ function Table(props) {
     return sortedData;
   };
 
+  const style = {
+    color: "red",
+  };
+
   return (
-    <div>
-      <ul>
-        {sortData().map((country) => (
-          <li>{country.country}</li>
-        ))}
-      </ul>
+    <div className="table">
+      {sortData().map(({ country, cases, deaths }) => (
+        <tr>
+          <td>{country}</td>
+          <td>
+            <strong>{cases}</strong>
+          </td>
+        </tr>
+      ))}
     </div>
   );
 }
