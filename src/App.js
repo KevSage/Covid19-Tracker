@@ -5,6 +5,7 @@ import InfoBox from "./Components/InfoBox";
 import Map from "./Components/Map";
 import { Card, CardContent, Typography } from "@material-ui/core";
 import Table from "./Components/Table";
+import LineGraph from "./Components/LineGraph";
 function App() {
   const [countries, setCountries] = useState([]);
   const [country, setCountry] = useState("worldwide");
@@ -79,20 +80,13 @@ function App() {
         </div>
 
         <Map />
-        {/* InfoBox */}
-        {/* InfoBox */}
-        {/* InfoBox */}
-
-        {/* Table */}
-        {/* Graph */}
-
-        {/* Map */}
       </div>
       <Card className="right">
         <CardContent>
           <h3>Live Cases by Country</h3>
           <Table countries={tableData} />
           <h3>Worldwide New cases</h3>
+          <LineGraph />
         </CardContent>
       </Card>
     </div>
