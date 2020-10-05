@@ -12,18 +12,57 @@ body {
 
 .left {
   flex: 0.9;
+  justify-content: center;
 }
 
 .app_header {
   display: flex;
   align-items: center;
   margin-bottom: 20px;
+  /* justify-content: center; */
   justify-content: space-between;
 }
+.app_header img {
+  width: 200px;
+}
 
+.app_header h1 {
+  text-align: center;
+}
+.countryTitle {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 20px;
+}
+
+/* .countryTitle img {
+  width: 90px !important;
+} */
 .app_stats {
   display: flex;
-  justify-content: space-between;
+  flex-direction: column;
+  justify-content: space-around;
+  text-align: center;
+  width: 100%;
+}
+.app_stats h3 {
+  display: inline-block;
+  margin: 20px;
+}
+.app_stats img {
+  display: inline-block;
+  width: 64px;
+}
+
+.info-boxes {
+  display: flex;
+  justify-content: space-around;
+}
+
+.info-boxes infoBox {
+  width: 30%;
 }
 
 @media (max-width: 990px) {

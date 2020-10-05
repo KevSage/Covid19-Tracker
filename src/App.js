@@ -6,18 +6,24 @@ import Map from "./Components/Map";
 import { Card, CardContent, Typography } from "@material-ui/core";
 import Table from "./Components/Table";
 import LineGraph from "./Components/LineGraph";
+import Coronavirus from "./coronavirus.svg";
+
 function App() {
   const [countries, setCountries] = useState([]);
   const [country, setCountry] = useState("worldwide");
   const [countryData, setCountryData] = useState({});
   const [tableData, setTableData] = useState([]);
+  const [flag, setFlag] = useState("");
   useEffect(() => {
-    if (country === "worldwide") {
-      fetch("https://disease.sh/v3/covid-19/all")
-        .then((resp) => resp.json())
-        .then((data) => setCountryData(data));
-    }
-  });
+    // if (country === "worldwide") {
+    fetch("https://disease.sh/v3/covid-19/all")
+      .then((resp) => resp.json())
+      .then((data) => {
+        setCountryData(data);
+      });
+    // }
+    console.log(countryData);
+  }, []);
 
   useEffect(() => {
     const getCountriesData = async () => {
@@ -45,7 +51,11 @@ function App() {
         : `https://disease.sh/v3/covid-19/countries/${countryCode}`;
     await fetch(url)
       .then((resp) => resp.json())
-      .then((data) => setCountryData(data));
+      .then((data) => {
+        setCountryData(data);
+      });
+    const flag = `https://www.countryflags.io/${countryCode}/shiny/64.png`;
+    setFlag(flag);
     console.log(countryData);
   };
 
@@ -53,6 +63,8 @@ function App() {
     <div className="app">
       <div className="left">
         <div className="app_header">
+          <img src={Coronavirus} alt="" className="coronavirus" />
+
           <h1>Covid 19 Tracker</h1>
           <CountryDrop
             changeCountry={changeCountry}
@@ -60,23 +72,30 @@ function App() {
             countries={countries}
           />
         </div>
+
         <div className="app_stats">
-          <h3>{country}</h3>
-          <InfoBox
-            title="Coronavirus Cases"
-            cases={countryData.todayCases}
-            total={2000}
-          />
-          <InfoBox
-            title="Recovered"
-            cases={countryData.todayRecovered}
-            total={2000}
-          />
-          <InfoBox
-            title="Deaths"
-            cases={countryData.todayDeaths}
-            total={2000}
-          />
+          <div className="countryTitle">
+            <img src={flag} alt="" className="flag" />
+
+            <h2>{countryData.country}</h2>
+          </div>
+          <div className="info-boxes">
+            <InfoBox
+              title="Cases"
+              cases={countryData.todayCases}
+              total={countryData.cases}
+            />
+            <InfoBox
+              title="Recovered"
+              cases={countryData.todayRecovered}
+              total={countryData.recovered}
+            />
+            <InfoBox
+              title="Deaths"
+              cases={countryData.todayDeaths}
+              total={countryData.deaths}
+            />
+          </div>
         </div>
 
         <Map />
