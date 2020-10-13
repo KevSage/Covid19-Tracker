@@ -7,6 +7,9 @@ import { Card, CardContent, Typography } from "@material-ui/core";
 import Table from "./Components/Table";
 import LineGraph from "./Components/LineGraph";
 import Coronavirus from "./coronavirus.svg";
+import "leaflet/dist/leaflet.css";
+import numeral from "numeral";
+import { Map as LeafletMap, TileLayer, Circle, Popup } from "react-leaflet";
 
 function App() {
   const [countries, setCountries] = useState([]);
@@ -14,6 +17,9 @@ function App() {
   const [countryData, setCountryData] = useState({});
   const [tableData, setTableData] = useState([]);
   const [flag, setFlag] = useState("");
+  const [mapCenter, setMapCenter] = useState({ lat: 34.80746, lng: -40.4796 });
+  const [mapZoom, setMapZoom] = useState(3);
+  const [nations, setNations] = useState([]);
   useEffect(() => {
     // if (country === "worldwide") {
     fetch("https://disease.sh/v3/covid-19/all")
@@ -36,6 +42,7 @@ function App() {
           }));
           setCountries(countries);
           setTableData(data);
+          setNations(data);
         });
     };
     getCountriesData();
@@ -53,11 +60,28 @@ function App() {
       .then((resp) => resp.json())
       .then((data) => {
         setCountryData(data);
+        setMapCenter([data.countryInfo.lat, data.countryInfo.long]);
+        setMapZoom(4);
       });
     const flag = `https://www.countryflags.io/${countryCode}/shiny/64.png`;
     setFlag(flag);
     console.log(countryData);
   };
+  // const mapData = (nations) => {
+  //   nations.map((nation) => (
+  //     <Circle
+  //       center={(nation.countryInfo.lat, nation.countryInfo.long)}
+  //       fillOpacity={0.7}
+  //       color="red"
+  //       fillColor="red"
+  //       radius={nation.todayCases * 1000}
+  //     >
+  //       <Popup>
+  //         <h1>I'm a popup</h1>
+  //       </Popup>
+  //     </Circle>
+  //   ));
+  // };
 
   return (
     <div className="app">
@@ -98,7 +122,12 @@ function App() {
           </div>
         </div>
 
-        <Map />
+        <Map
+          center={mapCenter}
+          zoom={mapZoom}
+          nations={nations}
+          // mapData={mapData}
+        />
       </div>
       <Card className="right">
         <CardContent>

@@ -37,9 +37,16 @@ body {
   padding: 20px;
 }
 
+.right {
+  width: 30%;
+}
+
 /* .countryTitle img {
   width: 90px !important;
 } */
+.leaflet {
+  height: 500px;
+}
 .app_stats {
   display: flex;
   flex-direction: column;
@@ -69,10 +76,11 @@ body {
   .app {
     flex-direction: column;
   }
-  /* .right {
+  .right {
     width: 100%;
   }
-  .left {
+  .chartjs-size-monitor {
     width: 100%;
-  } */
+    max-width: 100px;
+  }
 }
