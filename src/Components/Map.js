@@ -1,26 +1,21 @@
 import React from "react";
 import "../Map.css";
-import numeral from "numeral";
 import { Map as LeafletMap, TileLayer, Circle, Popup } from "react-leaflet";
 function Map({ center, zoom, nations }) {
   // debugger;
-  const mapData = nations.map(
-    (nation) => (
-      <Circle
-        center={[nation.countryInfo.lat, nation.countryInfo.long]}
-        fillOpacity={0.7}
-        color="red"
-        fillColor="red"
-        radius={nation.todayCases * 50}
-      >
-        <Popup>
-          <h1>I'm a popup</h1>
-        </Popup>
-      </Circle>
-    )
-    // console.log(nation)
-    // <p>{nation.countryInfo.lat}</p>
-  );
+  const mapData = nations.map((nation) => (
+    <Circle
+      center={[nation.countryInfo.lat, nation.countryInfo.long]}
+      fillOpacity={0.7}
+      color="red"
+      fillColor="red"
+      radius={nation.todayCases * 30}
+    >
+      <Popup>
+        <h1>{nation.country}</h1>
+      </Popup>
+    </Circle>
+  ));
   return (
     <div className="map">
       <LeafletMap center={center} zoom={zoom}>

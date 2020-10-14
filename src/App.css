@@ -1,3 +1,4 @@
+@import url("https://fonts.googleapis.com/css2?family=Alegreya+Sans:ital,wght@1,700&display=swap");
 * {
   margin: 0;
 }
@@ -21,20 +22,24 @@ body {
   margin-bottom: 20px;
   /* justify-content: center; */
   justify-content: space-between;
+  color: #ff415b;
+  margin-bottom: 0px;
 }
 .app_header img {
-  width: 200px;
+  width: 150px;
 }
 
 .app_header h1 {
   text-align: center;
+  font-family: "Arvo", serif;
+  font-size: 2.8rem;
 }
 .countryTitle {
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  padding: 20px;
+  /* padding: 20px; */
 }
 
 .right {
@@ -78,9 +83,5 @@ body {
   }
   .right {
     width: 100%;
-  }
-  .chartjs-size-monitor {
-    width: 100%;
-    max-width: 100px;
   }
 }

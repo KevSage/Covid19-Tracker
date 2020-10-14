@@ -67,21 +67,6 @@ function App() {
     setFlag(flag);
     console.log(countryData);
   };
-  // const mapData = (nations) => {
-  //   nations.map((nation) => (
-  //     <Circle
-  //       center={(nation.countryInfo.lat, nation.countryInfo.long)}
-  //       fillOpacity={0.7}
-  //       color="red"
-  //       fillColor="red"
-  //       radius={nation.todayCases * 1000}
-  //     >
-  //       <Popup>
-  //         <h1>I'm a popup</h1>
-  //       </Popup>
-  //     </Circle>
-  //   ));
-  // };
 
   return (
     <div className="app">
@@ -89,7 +74,7 @@ function App() {
         <div className="app_header">
           <img src={Coronavirus} alt="" className="coronavirus" />
 
-          <h1>Covid 19 Tracker</h1>
+          <h1>COVID-19 TRACKER</h1>
           <CountryDrop
             changeCountry={changeCountry}
             country={country}
