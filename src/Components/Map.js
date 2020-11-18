@@ -7,8 +7,8 @@ function Map({ center, zoom, nations }) {
     <Circle
       center={[nation.countryInfo.lat, nation.countryInfo.long]}
       fillOpacity={0.7}
-      color="blue"
-      fillColor="blue"
+      color="red"
+      fillColor="red"
       radius={nation.todayCases * 30}
     >
       <Popup>
